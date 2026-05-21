@@ -7,6 +7,8 @@ AED course at Unifesp.
 
 - **Stacks** — static and dynamic implementation
 - **Dynamic Queues** — pointer-based implementation
+- **Circular queues**
+- **Linked lists** — simply and doubly linked lists
 
 ## Technologies
 
