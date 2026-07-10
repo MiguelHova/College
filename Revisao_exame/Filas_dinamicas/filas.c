@@ -5,7 +5,7 @@
 
 //inicializa a fila
 Fila* init() {
-    Fila* f;
+    Fila* f = (Fila*) malloc(sizeof(Fila));
     f->fim = f->inicio = NULL;
 
     return f;
@@ -22,7 +22,7 @@ Fila* insert_int(Fila* f, int v) {
 
     //alocando ponteiros
         //caso a fila esteja vazia
-    if(!f) {
+    if(!f->inicio) {
         f->fim = f->inicio = novo;
         return f;
     }
@@ -43,7 +43,7 @@ Fila* insert_char(Fila* f, char c) {
 
     //alocando ponteiros
         //caso a fila esteja vazia
-    if(!f) {
+    if(!f->inicio) {
         f->fim = f->inicio = novo;
         return f;
     }
@@ -58,17 +58,16 @@ Fila* insert_char(Fila* f, char c) {
 Fila* delete_int(Fila* f, int *v) {
     No* aux;
 
-    aux = f->inicio;
-
     //Caso em que fila está vazia
-    if(!f) {
-        printf("/nA fila está vazia/n");
+    if(!f || !f->inicio) {
+        printf("\nA fila está vazia\n");
         return f;
     }
 
+    aux = f->inicio;
 
     //Caso em que há só um elemento
-    if(!f->fim->prox) {
+    if(f->inicio == f->fim) {
         f->inicio = f->fim = NULL;
         
         *v = aux->valor;
@@ -91,17 +90,16 @@ Fila* delete_int(Fila* f, int *v) {
 Fila* delete_char(Fila* f, int *c) {
     No* aux;
 
-    aux = f->inicio;
-
     //Caso em que fila está vazia
-    if(!f) {
-        printf("/nA fila está vazia/n");
+    if(!f || !f->inicio) {
+        printf("\nA fila está vazia\n");
         return f;
     }
 
+    aux = f->inicio;
 
     //Caso em que há só um elemento
-    if(!f->fim->prox) {
+    if(f->inicio == f->fim) {
         f->inicio = f->fim = NULL;
 
         *c = aux->caractere;
@@ -122,13 +120,15 @@ Fila* delete_char(Fila* f, int *c) {
 }
 
 void libera_fila(Fila* f) {
-    No* aux =  f->inicio;
+    No* aux;
 
     //Caso em que não há elementos
     if(!f) {
         printf("\nFila vazia\n");
         return;
     }
+
+    aux = f->inicio;
 
     //Caso geral
 
@@ -144,34 +144,33 @@ void libera_fila(Fila* f) {
 
     //agora f->fim é NULL, resolvendo o problema
     f->fim = f->inicio; 
-
-    return f;
 }
 
 void show_int(Fila* f) {
-    
+
     //fila vazia
     if(!f) return;
 
     //caso geral
-    while(f->inicio) {
-        printf("%d ", f->inicio->valor);
-        f->inicio = f->inicio->prox;
+    No* aux = f->inicio;
+    while(aux) {
+        printf("%d ", aux->valor);
+        aux = aux->prox;
     }
 
 }
 
 void show_char(Fila* f) {
-    
+
     //fila vazia
     if(!f) return;
 
     //caso geral
-    while(f->inicio) {
-        printf("%d ", f->inicio->caractere);
-        f->inicio = f->inicio->prox;
+    No* aux = f->inicio;
+    while(aux) {
+        printf("%d ", aux->caractere);
+        aux = aux->prox;
     }
-
 }
 
 
