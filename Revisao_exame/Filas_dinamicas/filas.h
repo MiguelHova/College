@@ -18,5 +18,7 @@ Fila* insert_char(Fila* f, char c);
 Fila* delete_int(Fila* f, int *v);
 Fila* delete_char(Fila* f, int *c);
 void libera_fila(Fila* f);
+void show_int(Fila* f);
+void show_char(Fila* f);
 
 #endif

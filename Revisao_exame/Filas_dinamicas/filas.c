@@ -148,7 +148,31 @@ void libera_fila(Fila* f) {
     return f;
 }
 
+void show_int(Fila* f) {
+    
+    //fila vazia
+    if(!f) return;
 
+    //caso geral
+    while(f->inicio) {
+        printf("%d ", f->inicio->valor);
+        f->inicio = f->inicio->prox;
+    }
+
+}
+
+void show_char(Fila* f) {
+    
+    //fila vazia
+    if(!f) return;
+
+    //caso geral
+    while(f->inicio) {
+        printf("%d ", f->inicio->caractere);
+        f->inicio = f->inicio->prox;
+    }
+
+}
 
 
 
